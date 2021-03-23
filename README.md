@@ -30,7 +30,7 @@ Extracted genres to compare results.
 
 Coming soon!
 
-![alt text](https://github.com/[milicajevremovic]/[Spotify-music-clustering-analysis-usingR
-]/blob/[branch]/Rplot06.pdf?raw=true)
+![alt text](https://github.com/milicajevremovic/Spotify-music-clustering-analysis-usingR
+/blob/Rplot06.pdf?raw=true)
 
 
