@@ -31,4 +31,4 @@ Extracted genres to compare results.
 
 # Results:
 
-
+![](dendogram.png)
