@@ -1,5 +1,4 @@
-#'За учитавање плејлисти које ћемо користити у овом раду, користићемо пакет spotifyr.
-#učitavanje spotifyr paketa u okruženje
+#ucitavanje spotifyr paketa
 
 remotes::install_github("charlie86/spotifyr")
 library(spotifyr)
@@ -17,15 +16,11 @@ clientSecret <- '0b53cc55d0ef4508a8938e8973a75f79'
 Sys.setenv(SPOTIFY_CLIENT_ID = clientID)
 Sys.setenv(SPOTIFY_CLIENT_SECRET = clientSecret)
 
-#'Након што смо поставили свој клијет ин и тајни кључ, можемо да приступимо токену.
-#'Потребан нам је важећи приступни токен услуге Spotify Accounts који је резултат извршавања функције get_spotify_access_token() пакета spotifyr.
+
 #pribavljane tokena
 
 access_token <- get_spotify_access_token()
 
-#'Функција која ће нам требати за преузимање одређених персоназизованих плејлисти је get_playlist_audio_features(playlist_username, playlist_uris)
-#'Поребно је да наведемо uri(Uniform Resource Identifier) корисника од ког желимо да преузмемо плејлисту и uri плејлисте.Uri се не може пронаћи у опцијама плејлисте 
-#'путем веб апликације, већ једино путем десктоп апликације, путањом Share/Copy Spotify Uri.
 
 playlist_username <- 'Spotify'
 playlist_uris <- '37i9dQZF1DWXRqgorJj26U'
@@ -62,6 +57,7 @@ mixed.playlists <- rbind(pl_Energic,
                          pl_Rock)
 
 #kreiranje novog dataseta sa kljucnim varijablama
+library(dplyr)
 
 mixed.playlists.selected.features <- select(mixed.playlists, c(playlist_name, danceability, energy, loudness, speechiness, acousticness, instrumentalness, liveness, valence, track.name, track.popularity,track.album.release_date))
 
@@ -72,10 +68,7 @@ colSums(is.na(mixed.playlists.selected.features))
 dataset <- mixed.playlists.selected.features
 dataset <- as.data.frame(dataset)
 str(dataset)
-#' Креирали смо датафрејм од 12 варијабли са 3 карактер варијабле. Пошто смо претходно учитали dplyr библиотеку, која служи за ефикасно манипулисање подацима, такође ћемо користити pipe operator - %>%. 
-#' Сложени оператор додељивања %<>% користи се за ажурирање вредности тако што се прво пребацује у један или више израза, а затим додељује резултат. 
-#' Стога, трансформисаћемо карактер варијаблу playlist_name у фактор, а затим ћемо из track.album.release_date из датума извући само годину издања и затим пребацити у целобројни тип податка.
-library(dplyr)
+
 #transformisanje karakter varijable u faktorsku, s obzirom da se radi o nekoliko naziva plejlisti
 dataset <- dataset  %>% 
   mutate(playlist_name = as.factor(playlist_name))
@@ -89,10 +82,11 @@ dataset <- dataset  %>%
 
 #ukljanjanje nepotrebne varijable
 dataset$track.album.release_date <- NULL
-#'Након уклањања непотребних варијабли и трансформисању у одговарајуће типове податка погодне за анализу, добили смо коначан скуп података за каснију манипулацију.
-# spremljen zdrav dataset
 
-str(dataset)
+#uklananje duplikata
+dataset <- dataset[!duplicated(dataset$track.name), ]
+
+# uklanjanje ekstremnih vrednosti i zamena za nize vrednosti, za samo odredjene numere
 
 boxplot(dataset$speechiness, xlab='Speechiness') 
 
@@ -107,5 +101,6 @@ sort(boxplot.stats(dataset$liveness)$out)
 
 dataset$liveness[dataset$liveness > 0.394  ] <- 0.394  
 
+
 #cuvanje u CSV
-write.csv(dataset,"C:\\Users\\Milica\\Desktop\\projekat 2\\data.set.csv", row.names = FALSE)
+write.csv(dataset,"C:\\Users\\Milica\\Desktop\\projekat 2\\dataset.csv", row.names = FALSE)
