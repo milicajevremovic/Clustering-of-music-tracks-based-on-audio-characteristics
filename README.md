@@ -7,13 +7,9 @@ The goal is define genres and their characteristics.
 
 ## 1.1 Explore the data
 Data file contains 1657 rows and 12 Spotify audio features:
-- danceability
-- energy
-- loudness
-- instrumentalness
-- acousticness
-- valence
-- ...
+
+distribution of audio features:
+ ![](numVariables.png)
 
 Songs were extracted using spotify API using sportifyr R package
 
@@ -36,4 +32,4 @@ Extracted genres to compare results.
 
 # Results:
 
-Coming soon!
+
