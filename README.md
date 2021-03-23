@@ -6,8 +6,16 @@ Examine a set of audio_features of songs and using clustering techniques identif
 The goal is define genres and their characteristics.
 
 ## 1.1 Explore the data
-Data file contains 1657 rows and 12 features
-THe songs were extracted using spotify API 
+Data file contains 1657 rows and 12 Spotify audio features:
+- danceability
+- energy
+- loudness
+- instrumentalness
+- acousticness
+- valence
+- ...
+
+Songs were extracted using spotify API using sportifyr R package
 
 ## 1.2 Choose algorithms
 I used three different type of clustering:
@@ -29,8 +37,3 @@ Extracted genres to compare results.
 # Results:
 
 Coming soon!
-
-![alt text](https://github.com/milicajevremovic/Spotify-music-clustering-analysis-usingR
-/blob/Rplot06.pdf?raw=true)
-
-
