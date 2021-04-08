@@ -21,7 +21,6 @@ I used three different type of clustering:
 ## 1.3 Dimentionality Reduction and Visualization
 
 - PCA
-- TSNE
 
 # Clustering audio tracks and compare with existing genres
 
@@ -32,3 +31,5 @@ Extracted genres to compare results.
 # Results:
 
 ![](dendogram.png)
+
+Comming soon!!!
